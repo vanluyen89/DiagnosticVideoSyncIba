@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { COFFEE_POPUP_EVENT } from '@/utils/coffeePopup';
 
 const AUTO_DISMISS_MS = 20_000;
-const COFFEE_URL = 'https://buymeacoffee.com/vanluyen89';
+const SUPPORT_URL = 'https://ko-fi.com/vanluyen89';
 
 export function CoffeePopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -65,28 +65,14 @@ export function CoffeePopup() {
           </div>
 
           <a
-            href={COFFEE_URL}
+            href={SUPPORT_URL}
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-flex items-center rounded-lg bg-[#ffdd00] px-3 py-2 text-xs font-semibold text-slate-950 transition-colors hover:bg-[#ffe433] focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
+            className="mt-3 inline-flex items-center rounded-lg bg-[#29abe0] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1599ce] focus-visible:ring-2 focus-visible:ring-sky-200 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 focus-visible:outline-none"
           >
-            Buy me a coffee
+            Support on Ko-fi
           </a>
         </div>
-
-        <a
-          href={COFFEE_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="shrink-0 rounded-xl bg-white p-1.5 transition-transform hover:scale-[1.03] focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:outline-none"
-          aria-label="Open Buy Me a Coffee page"
-        >
-          <img
-            src="/buy-me-a-coffee-vanluyen89.png"
-            alt="QR code for Buy Me a Coffee"
-            className="h-24 w-24 rounded-lg sm:h-28 sm:w-28"
-          />
-        </a>
       </div>
       <div className="coffee-popup-timer absolute right-0 bottom-0 left-0 h-0.5 bg-amber-300/70" />
     </aside>

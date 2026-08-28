@@ -67,14 +67,14 @@ export function Toolbar() {
 
       <div className="flex shrink-0 items-center gap-2">
         <a
-          href="https://buymeacoffee.com/vanluyen89"
+          href="https://ko-fi.com/vanluyen89"
           target="_blank"
           rel="noreferrer"
-          aria-label="Support the project on Buy Me a Coffee"
-          className="inline-flex items-center gap-2 rounded-lg bg-[#ffdd00] px-3 py-2 text-xs font-semibold text-slate-950 transition-colors hover:bg-[#ffe433] focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:outline-none"
+          aria-label="Support the project on Ko-fi"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#29abe0] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#1599ce] focus-visible:ring-2 focus-visible:ring-sky-200 focus-visible:outline-none"
         >
           <span aria-hidden="true">☕</span>
-          <span className="hidden md:inline">Buy me a coffee</span>
+          <span className="hidden md:inline">Support on Ko-fi</span>
         </a>
         <a
           href="https://github.com/vanluyen89/DiagnosticVideoSyncIba"

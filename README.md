@@ -46,7 +46,7 @@ npm run build
 
 ## Support
 
-If this project saves you time, you can support its development on [Buy Me a Coffee](https://buymeacoffee.com/vanluyen89).
+If this project saves you time, you can support its development on [Ko-fi](https://ko-fi.com/vanluyen89).
 
 ## License
 
