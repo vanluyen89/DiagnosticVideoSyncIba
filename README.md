@@ -4,7 +4,7 @@ Diagnostic Video Sync Iba is a browser-based diagnostic tool for viewing a video
 
 ## Use online
 
-You can use the application directly at [VDI.whk.io.vn](https://VDI.whk.io.vn).
+You can use the application directly at [vdi.stickylychee.com](https://vdi.stickylychee.com).
 
 ## Features
 
