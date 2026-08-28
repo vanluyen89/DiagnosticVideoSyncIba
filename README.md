@@ -2,6 +2,10 @@
 
 Diagnostic Video Sync Iba is a browser-based diagnostic tool for viewing a video recording alongside an iba signal export on one synchronized timeline. It helps engineers correlate events in the recording with signal changes and find root causes faster.
 
+## Use online
+
+You can use the application directly at [VDI.whk.io.vn](https://VDI.whk.io.vn).
+
 ## Features
 
 - Load MP4 or MOV video recordings.
