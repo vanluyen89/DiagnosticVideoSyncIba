@@ -2,6 +2,12 @@
 
 Diagnostic Video Sync Iba is a browser-based diagnostic tool for viewing a video recording alongside an iba signal export on one synchronized timeline. It helps engineers correlate events in the recording with signal changes and find root causes faster.
 
+Diagnostic Video Sync Iba project is not intended to replace ibaCapture.
+
+ibaCapture is a powerful solution, but for cases where synchronized video and process signals are only needed occasionally, investing in a dedicated system can be difficult to justify.
+
+Diagnostic Video Sync Iba is designed to fill that gap: a simple and practical way to capture and synchronize video with process data when needed, without the cost of purchasing a full ibaCapture system for something that may only be used a few times a year.
+
 ## Use online
 
 You can use the application directly at [vdi.stickylychee.com](https://vdi.stickylychee.com).
