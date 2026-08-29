@@ -67,6 +67,35 @@ export function ManualPage() {
             For the best results, synchronize both devices with the same NTP
             server before collecting diagnostic data.
           </p>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            With accurate input timestamps, the playback engine can typically
+            keep the video and signal timeline within approximately 20–50 ms.
+            For end-to-end synchronization, use these practical targets:
+          </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-300">
+            <li>
+              <strong>Below 50 ms:</strong> excellent synchronization.
+            </li>
+            <li>
+              <strong>Below 100 ms:</strong> the expected target for good
+              synchronization.
+            </li>
+            <li>
+              <strong>100–150 ms:</strong> generally suitable for most
+              machine-diagnostic work.
+            </li>
+            <li>
+              <strong>Above 200 ms:</strong> usually noticeable and may affect
+              the interpretation of fast events.
+            </li>
+          </ul>
+          <p className="mt-3 text-xs leading-5 text-slate-400">
+            These are expected ranges, not guaranteed limits. Video frame rate,
+            signal sampling interval, browser rendering, metadata accuracy, and
+            clock offset or drift all contribute to the final error. Clock or
+            metadata errors can introduce offsets of several hundred
+            milliseconds or even seconds.
+          </p>
         </aside>
 
         <aside className="mb-8 rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 sm:p-5">

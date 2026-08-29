@@ -26,6 +26,15 @@ Synchronization accuracy depends heavily on how closely the phone recording the 
 
 For the best results, configure both the phone and the iba server to synchronize their clocks with the same NTP server before recording and exporting diagnostic data.
 
+When the input timestamps are accurate, the playback engine can typically keep the video and signal timeline within approximately **20–50 ms**. For end-to-end synchronization between the recorded image and the iba signal, use the following practical targets:
+
+- **Below 50 ms:** excellent synchronization; requires accurate timestamps and closely synchronized device clocks.
+- **Below 100 ms:** the expected target for good synchronization.
+- **100–150 ms:** generally suitable for most machine-diagnostic work.
+- **Above 200 ms:** the offset is usually noticeable and may affect the interpretation of fast events.
+
+These values are expected ranges, not guaranteed limits. Video frame rate, signal sampling interval, browser rendering, video metadata accuracy, and clock offset or drift between the recording device and the iba server all contribute to the final error. Clock and metadata errors can cause offsets of several hundred milliseconds or even seconds, regardless of playback smoothness.
+
 ## Privacy
 
 Privacy is built into the application:
