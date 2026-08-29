@@ -20,6 +20,12 @@ You can use the application directly at [vdi.stickylychee.com](https://vdi.stick
 - Inspect signal values and add diagnostic markers.
 - Convert unsupported HEVC video to H.264 in the browser with FFmpeg WebAssembly.
 
+## Synchronization accuracy
+
+Synchronization accuracy depends heavily on how closely the phone recording the video and the iba server are time-synchronized. Even a small difference between their clocks can cause the video and signal data to appear offset on the shared timeline.
+
+For the best results, configure both the phone and the iba server to synchronize their clocks with the same NTP server before recording and exporting diagnostic data.
+
 ## Privacy
 
 Privacy is built into the application:

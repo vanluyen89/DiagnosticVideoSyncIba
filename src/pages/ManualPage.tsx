@@ -56,6 +56,19 @@ export function ManualPage() {
           </p>
         </div>
 
+        <aside className="border-accent-500/30 bg-accent-500/10 mb-8 rounded-xl border p-4 sm:p-5">
+          <h3 className="text-sm font-semibold text-slate-100">
+            Synchronize device clocks before recording
+          </h3>
+          <p className="mt-1 text-sm leading-6 text-slate-300">
+            Synchronization accuracy depends heavily on the time alignment
+            between the phone recording the video and the iba server. Even a
+            small clock difference can offset the video from the signal data.
+            For the best results, synchronize both devices with the same NTP
+            server before collecting diagnostic data.
+          </p>
+        </aside>
+
         <div className="space-y-5">
           <ManualStep
             number={1}
