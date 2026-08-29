@@ -4,6 +4,7 @@ import { DashboardPage } from '@/pages/DashboardPage';
 import { ManualPage } from '@/pages/ManualPage';
 import { HomePage } from '@/pages/HomePage';
 import { CoffeePopup } from '@/components/CoffeePopup';
+import { SignalImportDialogs } from '@/components/SignalImportDialogs';
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
+      <SignalImportDialogs />
       <CoffeePopup />
     </BrowserRouter>
   );

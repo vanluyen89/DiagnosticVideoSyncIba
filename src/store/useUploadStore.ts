@@ -9,6 +9,9 @@ import {
 import { useAppStore } from '@/store/useAppStore';
 import type { CsvParseStatus, ParsedCsvData } from '@/types/csv';
 import type { StoredUploadFile } from '@/types/upload';
+import { MAX_SIGNAL_FILE_SIZE_BYTES } from '@/utils/fileValidation';
+
+export const MAX_SELECTED_SIGNALS = 10;
 
 interface UploadState {
   video: StoredUploadFile | null;
@@ -22,8 +25,13 @@ interface UploadState {
   csvParseStatus: CsvParseStatus;
   csvParseError: string | null;
   csvRowsParsed: number;
+  pendingSignalSelection: ParsedCsvData | null;
+  signalFileSizeError: boolean;
   setVideoFile: (file: File) => void;
   setCsvFile: (file: File) => void;
+  confirmSignalSelection: (selectedIndexes: number[]) => void;
+  cancelSignalSelection: () => void;
+  dismissSignalFileSizeError: () => void;
   clearVideo: () => void;
   clearCsv: () => void;
 }
@@ -60,6 +68,8 @@ export const useUploadStore = create<UploadState>((set) => ({
   csvParseStatus: 'idle',
   csvParseError: null,
   csvRowsParsed: 0,
+  pendingSignalSelection: null,
+  signalFileSizeError: false,
 
   setVideoFile: (file) => {
     const generation = ++videoMetadataGeneration;
@@ -133,6 +143,11 @@ export const useUploadStore = create<UploadState>((set) => ({
   },
 
   setCsvFile: (file) => {
+    if (file.size > MAX_SIGNAL_FILE_SIZE_BYTES) {
+      set({ signalFileSizeError: true });
+      return;
+    }
+
     const generation = ++csvParseGeneration;
     const storedFile = toStoredFile(file, 'csv');
 
@@ -142,6 +157,8 @@ export const useUploadStore = create<UploadState>((set) => ({
       csvParseStatus: 'parsing',
       csvParseError: null,
       csvRowsParsed: 0,
+      pendingSignalSelection: null,
+      signalFileSizeError: false,
     });
     useAppStore.getState().setCsvFile(storedFile);
 
@@ -160,13 +177,18 @@ export const useUploadStore = create<UploadState>((set) => ({
           return;
         }
 
+        const requiresSelection =
+          parsedCsv.signalNames.length > MAX_SELECTED_SIGNALS;
         set({
           parsedCsv,
           csvParseStatus: 'ready',
           csvParseError: null,
           csvRowsParsed: parsedCsv.timestamps.length,
+          pendingSignalSelection: requiresSelection ? parsedCsv : null,
         });
-        useAppStore.getState().setCsvParsed(parsedCsv);
+        if (!requiresSelection) {
+          useAppStore.getState().setCsvParsed(parsedCsv);
+        }
       })
       .catch((error: unknown) => {
         if (generation !== csvParseGeneration) {
@@ -188,6 +210,37 @@ export const useUploadStore = create<UploadState>((set) => ({
         useAppStore.getState().setCsvParseError(message);
       });
   },
+
+  confirmSignalSelection: (selectedIndexes) => {
+    const pending = useUploadStore.getState().pendingSignalSelection;
+    const uniqueIndexes = [...new Set(selectedIndexes)].filter(
+      (index) =>
+        Number.isInteger(index) &&
+        index >= 0 &&
+        index < (pending?.signalNames.length ?? 0),
+    );
+    if (
+      !pending ||
+      uniqueIndexes.length === 0 ||
+      uniqueIndexes.length > MAX_SELECTED_SIGNALS
+    ) {
+      return;
+    }
+
+    const selected: ParsedCsvData = {
+      ...pending,
+      signalNames: uniqueIndexes.map((index) => pending.signalNames[index]!),
+      signalValues: uniqueIndexes.map((index) => pending.signalValues[index]!),
+    };
+    set({ parsedCsv: selected, pendingSignalSelection: null });
+    useAppStore.getState().setCsvParsed(selected);
+  },
+
+  cancelSignalSelection: () => {
+    useUploadStore.getState().clearCsv();
+  },
+
+  dismissSignalFileSizeError: () => set({ signalFileSizeError: false }),
 
   clearVideo: () =>
     set((state) => {
@@ -212,6 +265,7 @@ export const useUploadStore = create<UploadState>((set) => ({
       csvParseStatus: 'idle',
       csvParseError: null,
       csvRowsParsed: 0,
+      pendingSignalSelection: null,
     });
     useAppStore.getState().clearCsv();
   },

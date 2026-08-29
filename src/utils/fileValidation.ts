@@ -6,6 +6,8 @@ const CSV_EXTENSIONS = ['.csv', '.txt'];
 const VIDEO_MIME_TYPES = ['video/mp4', 'video/quicktime'];
 const CSV_MIME_TYPES = ['text/csv', 'application/csv', 'text/plain'];
 
+export const MAX_SIGNAL_FILE_SIZE_BYTES = 50 * 1024 * 1024;
+
 function getExtension(filename: string): string {
   const index = filename.lastIndexOf('.');
   return index >= 0 ? filename.slice(index).toLowerCase() : '';

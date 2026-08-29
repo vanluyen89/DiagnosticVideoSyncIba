@@ -69,11 +69,28 @@ export function ManualPage() {
           </p>
         </aside>
 
+        <aside className="mb-8 rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 sm:p-5">
+          <h3 className="text-sm font-semibold text-slate-100">
+            Signal import limits
+          </h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-300">
+            <li>
+              The signal file must not exceed 50 MB. Export a shorter time range
+              or reduce the number of channels if the file is too large.
+            </li>
+            <li>
+              The dashboard displays a maximum of 10 signals at a time. If the
+              imported file contains more than 10 signals, a dialog will ask you
+              to choose which signals to display.
+            </li>
+          </ul>
+        </aside>
+
         <div className="space-y-5">
           <ManualStep
             number={1}
-            title="Select a signal in iba Analyzer"
-            description="Open iba Analyzer, select the signal you want to analyze, and drag it into the display area."
+            title="Select signals in iba Analyzer"
+            description="Open iba Analyzer, select the signals you want to analyze, and drag them into the display area. Keep the export small by including only the channels and time range you need."
           />
           <ManualStep
             number={2}
@@ -92,7 +109,7 @@ export function ManualPage() {
           <ManualStep
             number={4}
             title="Upload the data"
-            description="Return to the Overview page and upload the video and the iba export file to their corresponding fields."
+            description="Return to the Overview page and upload the video and the iba export file to their corresponding fields. Signal files must not exceed 50 MB. If the file contains more than 10 signals, select up to 10 in the dialog and confirm to display them."
           />
         </div>
       </div>
