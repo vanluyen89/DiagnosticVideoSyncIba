@@ -98,7 +98,7 @@ export function Timeline() {
             Reset
           </button>
           <span id="signal-offset-help" className="text-slate-500">
-            + later / − earlier · ±10,000 ms
+            + later / − earlier · ±100,000 ms (100 s)
           </span>
         </div>
 

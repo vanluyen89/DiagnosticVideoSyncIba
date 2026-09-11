@@ -1,5 +1,5 @@
-export const SYNC_OFFSET_MIN = -10_000;
-export const SYNC_OFFSET_MAX = 10_000;
+export const SYNC_OFFSET_MIN = -100_000;
+export const SYNC_OFFSET_MAX = 100_000;
 
 export const DEFAULT_ZOOM_LEVEL = 1;
 export const MIN_ZOOM_LEVEL = 0.1;
