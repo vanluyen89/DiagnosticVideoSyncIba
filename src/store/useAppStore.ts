@@ -322,6 +322,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   setCsvFile: (file) =>
     set({
       csv: createEmptyCsvState(file),
+      offset: 0,
       signals: [],
       selectedSignalId: null,
     }),
@@ -382,6 +383,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   clearCsv: () =>
     set({
       csv: null,
+      offset: 0,
       signals: [],
       selectedSignalId: null,
     }),
@@ -451,7 +453,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
       selectedMarkerId: null,
     }),
 
-  setOffset: (offset) => set({ offset: clampOffset(offset) }),
+  setOffset: (offset) => {
+    if (Number.isFinite(offset)) {
+      set({ offset: clampOffset(offset) });
+    }
+  },
 
   resetOffset: () => set({ offset: 0 }),
 
@@ -554,7 +560,7 @@ export function selectSessionDuration(state: AppState): number {
 }
 
 export function selectSyncedCurrentTime(state: AppState): number {
-  return state.currentTime + state.offset;
+  return state.currentTime + selectSignalWindowOffset(state);
 }
 
 export function selectVideoWindowOffset(state: AppState): number {
@@ -562,5 +568,6 @@ export function selectVideoWindowOffset(state: AppState): number {
 }
 
 export function selectSignalWindowOffset(state: AppState): number {
-  return getSignalWindowOffsetMs(state);
+  // Positive manual offset delays the signals on the fixed video timeline.
+  return getSignalWindowOffsetMs(state) - state.offset;
 }

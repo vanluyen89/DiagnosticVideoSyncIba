@@ -333,6 +333,9 @@ function drawSignalTracks(
   const markerIsVisible =
     markerTime >= view.viewStart &&
     markerTime <= view.viewEnd &&
+    markerTime + signalWindowOffsetMs >= parsed.timestamps[0]! &&
+    markerTime + signalWindowOffsetMs <=
+      parsed.timestamps[parsed.timestamps.length - 1]! &&
     markerSampleIndex !== null;
 
   ctx.save();
@@ -459,7 +462,12 @@ function drawSignalTracks(
         ctx.fillRect(labelX, labelTop, labelWidth, labelHeight);
         ctx.strokeStyle = color;
         ctx.lineWidth = 1;
-        ctx.strokeRect(labelX + 0.5, labelTop + 0.5, labelWidth - 1, labelHeight - 1);
+        ctx.strokeRect(
+          labelX + 0.5,
+          labelTop + 0.5,
+          labelWidth - 1,
+          labelHeight - 1,
+        );
         ctx.fillStyle = color;
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
